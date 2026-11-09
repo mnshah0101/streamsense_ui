@@ -1,0 +1,70 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Licensed fonts: drop Druk-Bold/Druk-Medium and Siro-Regular/Siro-Medium
+   (.woff2) into public/fonts. Until then the stacks fall back per DESIGN.md. */
+@font-face { font-family: "Druk"; src: url("/fonts/Druk-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Druk"; src: url("/fonts/Druk-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Siro"; src: url("/fonts/Siro-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Siro"; src: url("/fonts/Siro-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+
+@theme inline {
+  /* Surfaces */
+  --color-bg-primary: #0a0a0a;
+  --color-bg-card: #1a1a1a;
+  --color-bg-card-hover: #222222;
+  --color-border-subtle: #2a2a2a;
+
+  /* Accent */
+  --color-accent: #e31837;
+  --color-accent-hover: #ff2244;
+
+  /* Text */
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #999999;
+  --color-text-muted: #666666;
+
+  /* Model series (categorical only) */
+  --color-model-0: #14b8a6;
+  --color-model-1: #f97316;
+  --color-model-2: #a855f7;
+  --color-model-3: #22c55e;
+  --color-model-4: #3b82f6;
+  --color-model-5: #ec4899;
+  --color-model-6: #eab308;
+  --color-model-7: #06b6d4;
+  --color-ground-truth: #fbbf24;
+
+  /* Type */
+  --font-display: "Druk", Impact, "Arial Narrow", sans-serif;
+  --font-body: "Siro", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --font-family-display: var(--font-display);
+  --font-family-body: var(--font-body);
+  color-scheme: dark;
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Horizontal catalog rows: hide the scrollbar but keep scrolling. */
+.row-scroll { scrollbar-width: none; }
+.row-scroll::-webkit-scrollbar { display: none; }
+
+/* Range input, styled to the token set (1px accent focus ring). */
+input[type="range"] { -webkit-appearance: none; appearance: none; background: transparent; width: 100%; }
+input[type="range"]::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: var(--color-border-subtle); }
+input[type="range"]::-moz-range-track { height: 4px; border-radius: 2px; background: var(--color-border-subtle); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; margin-top: -6px; height: 16px; width: 16px; border-radius: 9999px; background: var(--color-text-primary); border: 2px solid var(--color-bg-card); }
+input[type="range"]::-moz-range-thumb { height: 16px; width: 16px; border-radius: 9999px; background: var(--color-text-primary); border: 2px solid var(--color-bg-card); }
+input[type="range"]:focus { outline: none; }
+input[type="range"]:focus::-webkit-slider-thumb { box-shadow: 0 0 0 1px var(--color-accent); }
